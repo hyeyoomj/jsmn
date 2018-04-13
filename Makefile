@@ -30,6 +30,12 @@ simple_example: example/simple.o libjsmn.a
 simple_example2: example/simple2.o libjsmn.a
 	$(CC) $(LDFLAGS) $^ -o $@
 
+debug_example: simple_example
+degub_example: D_OPTION = -DDEBUG_MODE
+
+%.o: %.c jsmn.h
+	$(CC) $(D_OPTION) -c $(CFLAGS) %< -o $@
+
 jsondump: example/jsondump.o libjsmn.a
 	$(CC) $(LDFLAGS) $^ -o $@
 
