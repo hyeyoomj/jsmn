@@ -30,6 +30,9 @@ simple_example: example/simple.o libjsmn.a
 simple_example2: example/simple2.o libjsmn.a
 	$(CC) $(LDFLAGS) $^ -o $@
 
+parsejson_example: example/parsejsonfile.c libjsmn.a
+	$(CC) $(LDFLAGS) $^ -o $@
+
 debug_example: simple_example
 degub_example: D_OPTION = -DDEBUG_MODE
 
