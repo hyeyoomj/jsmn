@@ -1,7 +1,7 @@
 # You can put your build options here
 -include config.mk
 
-all: libjsmn.a 
+all: libjsmn.a
 
 libjsmn.a: jsmn.o
 	$(AR) rc $@ $^
@@ -27,17 +27,13 @@ jsmn_test.o: jsmn_test.c libjsmn.a
 
 simple_example: example/simple.o libjsmn.a
 	$(CC) $(LDFLAGS) $^ -o $@
-simple_example2: example/simple2.o libjsmn.a
-	$(CC) $(LDFLAGS) $^ -o $@
 
-parsejson_example: example/parsejsonfile.c libjsmn.a
+
+parsejson_example: example/parsejsonfile.o libjsmn.a
 	$(CC) $(LDFLAGS) $^ -o $@
 
 debug_example: simple_example
 degub_example: D_OPTION = -DDEBUG_MODE
-
-%.o: %.c jsmn.h
-	$(CC) $(D_OPTION) -c $(CFLAGS) %< -o $@
 
 jsondump: example/jsondump.o libjsmn.a
 	$(CC) $(LDFLAGS) $^ -o $@
@@ -49,4 +45,3 @@ clean:
 	rm -f jsondump
 
 .PHONY: all clean test
-

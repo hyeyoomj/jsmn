@@ -16,7 +16,7 @@
    file1 = fopen("/Users/hyeyoom/Desktop/jsmn/example/parsejson.json", "rt");
 
    while (fgets(temp, sizeof(temp), file1)) {
-     if (temp[strlen(temp)-1] == '/n') {
+     if (temp[strlen(temp)-1] == '\n') {
        retstr = (char *)realloc (retstr, strlen(temp)-1);
        strncat(retstr, temp, strlen(temp)-1);
      }
@@ -42,6 +42,7 @@ int main() {
 	int r;
 	jsmn_parser p;
 	jsmntok_t t[128]; /* We expect no more than 128 tokens */
+	char *JSON_STRING;
 	JSON_STRING = readjsonfile();
 
 #ifdef DEBUG_MODE
