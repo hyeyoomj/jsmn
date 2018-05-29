@@ -8,13 +8,13 @@
  * tokens is predictable.
  */
 
- char * readjsonfile() {
+
+ char * readjsonfile(const char * filename) {
    char temp[100];
    FILE *file1;
    char *retstr;
    retstr = (char *)malloc(1);
-   file1 = fopen("/Users/hyeyoom/Desktop/jsmn/example/parsejson.json", "rt");
-
+   file1 = fopen("filename", "rt");
    while (fgets(temp, sizeof(temp), file1)) {
      if (temp[strlen(temp)-1] == '\n') {
        retstr = (char *)realloc (retstr, strlen(temp)-1);
@@ -42,8 +42,8 @@ int main() {
 	int r;
 	jsmn_parser p;
 	jsmntok_t t[128]; /* We expect no more than 128 tokens */
-	char *JSON_STRING;
-	JSON_STRING = readjsonfile();
+  char *JSON_STRING;
+	JSON_STRING = readjsonfile(data.json);
 
 #ifdef DEBUG_MODE
 	printf("\n<JSON_STRING>\n");
